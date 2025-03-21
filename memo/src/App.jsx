@@ -1,4 +1,3 @@
-import Hello from "./components/Hello";
 import NavBar from "./components/NavBar";
 
 function App() {
