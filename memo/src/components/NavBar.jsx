@@ -1,11 +1,10 @@
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-
+import { Paper, AppBar, Toolbar, Typography } from "@mui/material";
 export default function NavBar() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Paper
+      sx={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 2 }}
+      elevation={3}
+    >
       <AppBar position="static">
         <Toolbar>
           <Typography
@@ -18,6 +17,6 @@ export default function NavBar() {
           </Typography>
         </Toolbar>
       </AppBar>
-    </Box>
+    </Paper>
   );
 }
