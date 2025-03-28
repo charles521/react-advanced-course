@@ -10,6 +10,7 @@ export default function BottomNavBar() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   return (
     <Paper
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
