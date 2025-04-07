@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { List } from "@mui/material";
 import { useLocalStorage } from "react-use";
 import MemoListItem from "./MemoListItem";
+import toast from "react-hot-toast";
 
 export default function MemoList({ searchVal = "" }) {
   // const menuList = [
@@ -60,8 +61,14 @@ export default function MemoList({ searchVal = "" }) {
   //   },
   // ];
 
-  const [menuList] = useLocalStorage("memoList", []);
+  const [menuList, setMemoList] = useLocalStorage("memoList", []);
   const [filteredMenuList, setFilteredMenuList] = useState(menuList);
+
+  function delMemo(id) {
+    setMemoList(menuList.filter((memoItem) => memoItem.id !== id));
+
+    toast.success("Successfully Deleted!");
+  }
 
   useEffect(() => {
     if (searchVal === "") {
@@ -75,10 +82,14 @@ export default function MemoList({ searchVal = "" }) {
     }
   }, [searchVal]);
 
+  useEffect(() => {
+    setFilteredMenuList(menuList);
+  }, [menuList]);
+
   return (
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
       {filteredMenuList.map((memoItem) => (
-        <MemoListItem key={memoItem.id} memoItem={memoItem} />
+        <MemoListItem key={memoItem.id} memoItem={memoItem} delMemo={delMemo} />
       ))}
     </List>
   );

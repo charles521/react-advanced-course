@@ -1,5 +1,7 @@
-import { ListItem, ListItemText, Divider } from "@mui/material";
-function MemoListItem({ memoItem }) {
+import { ListItem, ListItemText, Divider, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+
+function MemoListItem({ memoItem, delMemo }) {
   const content = memoItem.content;
 
   const truncateText = (text) => {
@@ -17,7 +19,18 @@ function MemoListItem({ memoItem }) {
   };
   return (
     <>
-      <ListItem alignItems="flex-start">
+      <ListItem
+        alignItems="flex-start"
+        secondaryAction={
+          <IconButton
+            edge="end"
+            aria-label="delete"
+            onClick={() => delMemo(memoItem.id)}
+          >
+            <DeleteIcon />
+          </IconButton>
+        }
+      >
         <ListItemText
           primary={memoItem.title}
           secondary={<>{truncateText(content)}</>}
