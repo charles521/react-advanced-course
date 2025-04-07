@@ -5,7 +5,7 @@ function MemoListItem({ memoItem }) {
       <ListItem alignItems="flex-start">
         <ListItemText
           primary={memoItem.title}
-          secondary={<>{memoItem.body}</>}
+          secondary={<>{memoItem.content}</>}
         />
       </ListItem>
       <Divider component="li" />

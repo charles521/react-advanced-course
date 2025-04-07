@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 import BottomNavBar from "./BottomNavBar";
-
+import { Toaster } from "react-hot-toast";
 function AppLayout() {
   return (
     <>
@@ -10,6 +10,8 @@ function AppLayout() {
         <Outlet />
       </div>
       <BottomNavBar />
+
+      <Toaster />
     </>
   );
 }
