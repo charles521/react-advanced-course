@@ -6,11 +6,10 @@ function AppLayout() {
   return (
     <>
       <NavBar />
-      <div style={{ padding: "70px 0 60px 0" }}>
+      <div style={{ padding: "70px 0 60px 0", textAlign: "center" }}>
         <Outlet />
       </div>
       <BottomNavBar />
-
       <Toaster />
     </>
   );

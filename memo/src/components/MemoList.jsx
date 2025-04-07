@@ -1,8 +1,9 @@
+import { useState, useEffect } from "react";
 import { List } from "@mui/material";
 import { useLocalStorage } from "react-use";
 import MemoListItem from "./MemoListItem";
 
-export default function MemoList() {
+export default function MemoList({ searchVal = "" }) {
   // const menuList = [
   //   {
   //     id: 1,
@@ -60,10 +61,23 @@ export default function MemoList() {
   // ];
 
   const [menuList] = useLocalStorage("memoList", []);
+  const [filteredMenuList, setFilteredMenuList] = useState(menuList);
+
+  useEffect(() => {
+    if (searchVal === "") {
+      setFilteredMenuList(menuList);
+    } else {
+      setFilteredMenuList(
+        menuList.filter((memoItem) =>
+          memoItem.title.toLowerCase().includes(searchVal.toLowerCase())
+        )
+      );
+    }
+  }, [searchVal]);
 
   return (
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-      {menuList.map((memoItem) => (
+      {filteredMenuList.map((memoItem) => (
         <MemoListItem key={memoItem.id} memoItem={memoItem} />
       ))}
     </List>
