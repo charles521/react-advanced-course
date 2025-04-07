@@ -1,17 +1,21 @@
-import NavBar from "./components/NavBar";
-import BottomNavBar from "./components/BottomNavBar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AppLayout from "./components/AppLayout";
 import MemoList from "./components/MemoList";
 import Add from "./components/Add";
+import Search from "./components/Search";
 
 function App() {
   return (
     <>
-      <NavBar />
-      <div style={{ padding: "70px 0 60px 0" }}>
-        {/* <MemoList /> */}
-        <Add />
-      </div>
-      <BottomNavBar />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route path="/" element={<MemoList />} />
+            <Route path="/add" element={<Add />} />
+            <Route path="/search" element={<Search />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

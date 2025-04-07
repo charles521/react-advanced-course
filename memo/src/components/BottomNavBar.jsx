@@ -1,14 +1,17 @@
-import * as React from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Paper, BottomNavigation, BottomNavigationAction } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 
 export default function BottomNavBar() {
-  const [value, setValue] = React.useState("recents");
+  const navigate = useNavigate();
+  const [value, setValue] = useState("recents");
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (_event, newValue) => {
     setValue(newValue);
+    navigate(newValue);
   };
 
   return (
@@ -17,11 +20,11 @@ export default function BottomNavBar() {
       elevation={3}
     >
       <BottomNavigation value={value} onChange={handleChange}>
-        <BottomNavigationAction label="Home" value="Home" icon={<HomeIcon />} />
-        <BottomNavigationAction label="Add" value="Add" icon={<AddIcon />} />
+        <BottomNavigationAction label="Home" value="/" icon={<HomeIcon />} />
+        <BottomNavigationAction label="Add" value="add" icon={<AddIcon />} />
         <BottomNavigationAction
           label="Search"
-          value="Search"
+          value="search"
           icon={<SearchIcon />}
         />
       </BottomNavigation>
