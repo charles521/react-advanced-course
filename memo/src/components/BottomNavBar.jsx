@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Paper, BottomNavigation, BottomNavigationAction } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import AddIcon from "@mui/icons-material/Add";
@@ -7,10 +7,18 @@ import SearchIcon from "@mui/icons-material/Search";
 
 export default function BottomNavBar() {
   const navigate = useNavigate();
-  const [value, setValue] = useState("recents");
+  const { pathname } = useLocation();
+  const [value, setValue] = useState("/");
+
+  useEffect(() => {
+    if (pathname === "/") {
+      setValue("/");
+      return;
+    }
+    setValue(pathname.slice(1));
+  }, [pathname]);
 
   const handleChange = (_event, newValue) => {
-    setValue(newValue);
     navigate(newValue);
   };
 
