@@ -4,9 +4,7 @@ import MemoList from "./components/MemoList";
 import Add from "./components/Add";
 import Search from "./components/Search";
 import MemoItem from "./components/MemoItem";
-
-// https://ahooks.js.org/zh-CN/hooks/use-request/index
-
+import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <>
@@ -16,9 +14,10 @@ function App() {
             <Route path="/" element={<MemoList />} />
             <Route path="/add" element={<Add />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/memo/:memoId" element={<MemoItem />} />
           </Route>
+          <Route path="/memo/:memoId" element={<MemoItem />} />
         </Routes>
+        <Toaster />
       </BrowserRouter>
     </>
   );

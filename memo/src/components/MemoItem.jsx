@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Fab } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
 import { useLocalStorage } from "react-use";
 import toast from "react-hot-toast";
 
@@ -15,11 +16,20 @@ function MemoItem() {
   const [content, setContent] = useState(currentMemo.content);
 
   function updateMemo() {
+    const newMemoList = memoList.map((memo) => {
+      if (Number(memo.id) === Number(memoId)) {
+        return { ...memo, title: value, content: content };
+      }
+      return memo;
+    });
+    setMemoList(newMemoList);
+    setValue("");
+    setContent("");
     toast.success("Successfully Updated!");
   }
 
   return (
-    <form style={{ textAlign: "center" }}>
+    <form style={{ textAlign: "center", paddingTop: "30px" }}>
       <TextField
         label="title"
         variant="outlined"
@@ -40,6 +50,13 @@ function MemoItem() {
       <Button variant="contained" onClick={() => updateMemo()}>
         Update
       </Button>
+
+      <Fab
+        color="primary"
+        style={{ position: "fixed", bottom: "80px", right: "40px" }}
+      >
+        <HomeIcon fontSize="small" />
+      </Fab>
     </form>
   );
 }
