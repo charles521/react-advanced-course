@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Button, TextField, Fab } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import { useLocalStorage } from "react-use";
@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 
 function MemoItem() {
   const { memoId } = useParams();
+  const navigate = useNavigate();
   const [memoList, setMemoList] = useLocalStorage("memoList");
   const currentMemo = memoList.find(
     (memo) => Number(memo.id) === Number(memoId)
@@ -26,6 +27,7 @@ function MemoItem() {
     setValue("");
     setContent("");
     toast.success("Successfully Updated!");
+    navigate("/");
   }
 
   return (
@@ -54,6 +56,7 @@ function MemoItem() {
       <Fab
         color="primary"
         style={{ position: "fixed", bottom: "80px", right: "40px" }}
+        onClick={() => navigate("/")}
       >
         <HomeIcon fontSize="small" />
       </Fab>

@@ -1,7 +1,9 @@
 import { ListItem, ListItemText, Divider, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
 
 function MemoListItem({ memoItem, delMemo }) {
+  const navigate = useNavigate();
   const content = memoItem.content;
 
   const truncateText = (text) => {
@@ -25,11 +27,15 @@ function MemoListItem({ memoItem, delMemo }) {
           <IconButton
             edge="end"
             aria-label="delete"
-            onClick={() => delMemo(memoItem.id)}
+            onClick={(event) => {
+              event.stopPropagation();
+              delMemo(memoItem.id);
+            }}
           >
             <DeleteIcon />
           </IconButton>
         }
+        onClick={() => navigate(`/memo/${memoItem.id}`)}
       >
         <ListItemText
           primary={memoItem.title}
