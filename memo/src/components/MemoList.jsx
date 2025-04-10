@@ -80,11 +80,7 @@ export default function MemoList({ searchVal = "" }) {
         )
       );
     }
-  }, [searchVal]);
-
-  useEffect(() => {
-    setFilteredMenuList(menuList);
-  }, [menuList]);
+  }, [searchVal, menuList]);
 
   return (
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
