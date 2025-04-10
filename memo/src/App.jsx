@@ -1,21 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AppLayout from "./components/AppLayout";
-import MemoList from "./components/MemoList";
-import Add from "./components/Add";
-import Search from "./components/Search";
-import MemoItem from "./components/MemoItem";
+import AppLayout from "./ui/AppLayout";
+import Home from "./features/home/Home";
+import Add from "./features/add/Add";
+import Search from "./features/search/Search";
+import Edit from "./features/edit/Edit";
+
 import { Toaster } from "react-hot-toast";
+
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
-            <Route path="/" element={<MemoList />} />
+            <Route path="/" element={<Home />} />
             <Route path="/add" element={<Add />} />
             <Route path="/search" element={<Search />} />
           </Route>
-          <Route path="/memo/:memoId" element={<MemoItem />} />
+          <Route path="/memo/:memoId" element={<Edit />} />
         </Routes>
         <Toaster />
       </BrowserRouter>

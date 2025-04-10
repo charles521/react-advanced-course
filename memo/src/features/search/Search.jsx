@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { TextField } from "@mui/material";
-import MemoList from "./MemoList";
+import MemoList from "../memo-list/MemoList";
 
 function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
