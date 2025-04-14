@@ -14,5 +14,4 @@ function NavBar({ counter, setCurrentComponent }) {
     </nav>
   );
 }
-
 export default NavBar;
