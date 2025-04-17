@@ -4,7 +4,6 @@ import { PrimeReactProvider } from "primereact/api";
 
 import App from "./App.jsx";
 
-import "primereact/resources/themes/lara-light-cyan/theme.css";
 import "primeicons/primeicons.css";
 import "./index.css";
 
