@@ -33,6 +33,7 @@ export default function NavBar() {
       )}
     </a>
   );
+
   const items = [
     {
       label: "Cart",
