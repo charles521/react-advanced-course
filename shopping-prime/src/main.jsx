@@ -7,7 +7,6 @@ import App from "./App.jsx";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 import "primereact/resources/primereact.css";
-
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(
