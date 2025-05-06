@@ -6,8 +6,9 @@ import { Tag } from "primereact/tag";
 import { classNames } from "primereact/utils";
 import { ProductService } from "../services/ProductService";
 import { useLocalStorage } from "react-use";
+import { show } from "../utils/toastHelper";
 
-export default function ShopList({ show }) {
+export default function ShopList({ toast }) {
   const [products, setProducts] = useState([]);
   const [cartList, setCartList] = useLocalStorage("cart-list", []);
 
@@ -16,10 +17,14 @@ export default function ShopList({ show }) {
   }, []);
 
   const addCart = (product) => {
+    if (cartList.find((item) => Number(item.id) === Number(product.id))) {
+      show(toast, "The product is already in the cart", "error", 3000);
+      return;
+    }
+
     const newCartList = [...cartList, product];
     setCartList(newCartList);
-    console.log(cartList);
-    show();
+    show(toast, "Successfully added");
   };
 
   const getSeverity = (product) => {

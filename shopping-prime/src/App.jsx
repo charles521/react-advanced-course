@@ -11,20 +11,11 @@ export default function App() {
 
   const toast = useRef(null);
 
-  const show = () => {
-    toast.current.show({
-      severity: "success",
-      summary: "Success",
-      detail: "Successfully added",
-      life: 1000,
-    });
-  };
-
   return (
     <>
       <NavBar setVisible={setVisible} />
       <CartDialog visible={visible} setVisible={setVisible} />
-      <ShopList show={show} />
+      <ShopList toast={toast} />
 
       <Toast ref={toast} />
     </>
