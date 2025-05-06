@@ -5,13 +5,22 @@ import { Rating } from "primereact/rating";
 import { Tag } from "primereact/tag";
 import { classNames } from "primereact/utils";
 import { ProductService } from "../services/ProductService";
+import { useLocalStorage } from "react-use";
 
-export default function ShopList() {
+export default function ShopList({ show }) {
   const [products, setProducts] = useState([]);
+  const [cartList, setCartList] = useLocalStorage("cart-list", []);
 
   useEffect(() => {
     ProductService.getProducts().then((data) => setProducts(data));
   }, []);
+
+  const addCart = (product) => {
+    const newCartList = [...cartList, product];
+    setCartList(newCartList);
+    console.log(cartList);
+    show();
+  };
 
   const getSeverity = (product) => {
     switch (product.inventoryStatus) {
@@ -63,6 +72,15 @@ export default function ShopList() {
                 icon="pi pi-shopping-cart"
                 className="p-button-rounded"
                 disabled={product.inventoryStatus === "OUTOFSTOCK"}
+                onClick={() =>
+                  addCart({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    category: product.category,
+                  })
+                }
               ></Button>
             </div>
           </div>

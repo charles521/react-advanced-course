@@ -1,7 +1,7 @@
 import { Dialog } from "primereact/dialog";
 import AppOrderList from "./AppOrderList";
 
-function CardDialog({ visible, setVisible }) {
+function CartDialog({ visible, setVisible }) {
   return (
     <Dialog
       header="Header"
@@ -20,4 +20,4 @@ function CardDialog({ visible, setVisible }) {
   );
 }
 
-export default CardDialog;
+export default CartDialog;
