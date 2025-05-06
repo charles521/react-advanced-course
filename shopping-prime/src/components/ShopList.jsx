@@ -23,7 +23,6 @@ export default function ShopList() {
 
       case "OUTOFSTOCK":
         return "danger";
-
       default:
         return null;
     }

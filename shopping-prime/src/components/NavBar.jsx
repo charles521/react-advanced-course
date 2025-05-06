@@ -4,7 +4,7 @@ import { InputText } from "primereact/inputtext";
 import { Badge } from "primereact/badge";
 import { Button } from "primereact/button";
 
-export default function NavBar() {
+export default function NavBar({ setVisible }) {
   const [currentTheme, setCurrentTheme] = useState("light");
 
   function toggleTheme() {
@@ -40,6 +40,9 @@ export default function NavBar() {
       icon: "pi pi-shopping-cart",
       badge: 3,
       template: itemRenderer,
+      command: () => {
+        setVisible(true);
+      },
     },
   ];
 
