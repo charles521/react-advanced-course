@@ -1,14 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 
-import CartDialog from "./components/CartDialog";
-import NavBar from "./components/NavBar";
-import ShopList from "./components/ShopList";
+import CartDialog from "./ui/CartDialog";
+import NavBar from "./ui/NavBar";
+import ShopList from "./features/ShopList";
 
 import { Toast } from "primereact/toast";
 import { useDispatch } from "react-redux";
 import { useLocalStorage } from "react-use";
 
-import { load } from "./components/cartListSlice";
+import { load } from "./features/store/cartListSlice";
 
 export default function App() {
   const dispatch = useDispatch();

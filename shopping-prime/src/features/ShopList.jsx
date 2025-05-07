@@ -1,44 +1,22 @@
-import React, { useState, useEffect } from "react";
 import { Button } from "primereact/button";
 import { DataView } from "primereact/dataview";
 import { Rating } from "primereact/rating";
 import { Tag } from "primereact/tag";
 import { classNames } from "primereact/utils";
-import { ProductService } from "../services/ProductService";
-import { useLocalStorage } from "react-use";
-import { show } from "../utils/toastHelper";
-import { useDispatch } from "react-redux";
-import { append } from "./cartListSlice";
+
+import { useCart } from "../hooks/useCart";
+import { useProductData } from "../hooks/useProductData";
 
 export default function ShopList({ toast }) {
-  const dispatch = useDispatch();
-  const [products, setProducts] = useState([]);
-  const [cartList, setCartList] = useLocalStorage("cart-list", []);
-
-  useEffect(() => {
-    ProductService.getProducts().then((data) => setProducts(data));
-  }, []);
-
-  const addCart = (product) => {
-    if (cartList.find((item) => Number(item.id) === Number(product.id))) {
-      show(toast, "The product is already in the cart", "error", 3000);
-      return;
-    }
-
-    const newCartList = [...cartList, product];
-    dispatch(append(product));
-    setCartList(newCartList);
-    show(toast, "Successfully added");
-  };
+  const { products } = useProductData();
+  const { addCart } = useCart(toast);
 
   const getSeverity = (product) => {
     switch (product.inventoryStatus) {
       case "INSTOCK":
         return "success";
-
       case "LOWSTOCK":
         return "warning";
-
       case "OUTOFSTOCK":
         return "danger";
       default:
