@@ -7,8 +7,11 @@ import { classNames } from "primereact/utils";
 import { ProductService } from "../services/ProductService";
 import { useLocalStorage } from "react-use";
 import { show } from "../utils/toastHelper";
+import { useDispatch } from "react-redux";
+import { append } from "./cartListSlice";
 
 export default function ShopList({ toast }) {
+  const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
   const [cartList, setCartList] = useLocalStorage("cart-list", []);
 
@@ -23,6 +26,7 @@ export default function ShopList({ toast }) {
     }
 
     const newCartList = [...cartList, product];
+    dispatch(append(product));
     setCartList(newCartList);
     show(toast, "Successfully added");
   };

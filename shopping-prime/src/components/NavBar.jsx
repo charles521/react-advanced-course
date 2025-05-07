@@ -3,11 +3,11 @@ import { Menubar } from "primereact/menubar";
 import { InputText } from "primereact/inputtext";
 import { Badge } from "primereact/badge";
 import { Button } from "primereact/button";
-import { useLocalStorage } from "react-use";
+import { useSelector } from "react-redux";
 
 export default function NavBar({ setVisible }) {
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [cartList] = useLocalStorage("cart-list", []);
+  const cartListStore = useSelector((state) => state.cartList);
   function toggleTheme() {
     setCurrentTheme(currentTheme === "light" ? "dark" : "light");
   }
@@ -39,8 +39,8 @@ export default function NavBar({ setVisible }) {
     {
       label: "Cart",
       icon: "pi pi-shopping-cart",
-      ...(cartList.length > 0 && {
-        badge: cartList.length,
+      ...(cartListStore.length > 0 && {
+        badge: cartListStore.length,
       }),
       template: itemRenderer,
       command: () => {
