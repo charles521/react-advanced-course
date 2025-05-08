@@ -1,5 +1,5 @@
 import { Dialog } from "primereact/dialog";
-import AppOrderList from "./AppOrderList";
+import AppOrderList from "../ui/AppOrderList";
 
 function CartDialog({ visible, setVisible }) {
   return (
