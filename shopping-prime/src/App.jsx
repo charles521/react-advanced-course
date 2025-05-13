@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-import CartDialog from "./ui/CartDialog";
+import CartDialog from "./features/CartDialog";
 import NavBar from "./ui/NavBar";
 import ShopList from "./features/ShopList";
 
