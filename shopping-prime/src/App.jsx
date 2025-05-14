@@ -1,12 +1,11 @@
 import { useState, useRef, useEffect } from "react";
-
-import CartDialog from "./features/CartDialog";
-import NavBar from "./ui/NavBar";
-import ShopList from "./features/ShopList";
-
 import { Toast } from "primereact/toast";
 import { useDispatch } from "react-redux";
 import { useLocalStorage } from "react-use";
+
+import NavBar from "./ui/NavBar";
+import ShopList from "./features/ShopList";
+import CartDialog from "./features/CartDialog";
 
 import { load } from "./features/store/cartListSlice";
 
@@ -14,6 +13,7 @@ export default function App() {
   const dispatch = useDispatch();
   const [cartList] = useLocalStorage("cartList", []);
   const [visible, setVisible] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const toast = useRef(null);
 
   useEffect(() => {
@@ -22,10 +22,13 @@ export default function App() {
 
   return (
     <>
-      <NavBar setVisible={setVisible} />
+      <NavBar
+        setVisible={setVisible}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
+      <ShopList toast={toast} searchValue={searchValue} />
       <CartDialog visible={visible} setVisible={setVisible} />
-      <ShopList toast={toast} />
-
       <Toast ref={toast} />
     </>
   );

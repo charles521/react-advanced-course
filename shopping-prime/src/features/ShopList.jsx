@@ -6,10 +6,26 @@ import { classNames } from "primereact/utils";
 
 import { useCart } from "../hooks/useCart";
 import { useProductData } from "../hooks/useProductData";
+import { useState, useEffect } from "react";
 
-export default function ShopList({ toast }) {
+export default function ShopList({ toast, searchValue = "" }) {
   const { products } = useProductData();
   const { addCart } = useCart(toast);
+
+  const [filterProducts, setFilterProducts] = useState(products);
+
+  useEffect(() => {
+    console.log("searchVal", searchValue);
+    if (searchValue === "") {
+      setFilterProducts(products);
+    } else {
+      setFilterProducts(
+        products.filter((item) =>
+          item.name.toLowerCase().includes(searchValue.toLowerCase())
+        )
+      );
+    }
+  }, [searchValue, products]);
 
   const getSeverity = (product) => {
     switch (product.inventoryStatus) {
@@ -89,7 +105,7 @@ export default function ShopList({ toast }) {
   return (
     <div className="card">
       <DataView
-        value={products}
+        value={filterProducts}
         listTemplate={listTemplate}
         paginator
         rows={5}

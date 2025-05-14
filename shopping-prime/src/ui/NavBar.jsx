@@ -4,7 +4,7 @@ import { Button } from "primereact/button";
 import { useTheme } from "../hooks/useTheme";
 import { useMenuItems } from "../hooks/useMenuItems";
 
-export default function NavBar({ setVisible }) {
+export default function NavBar({ setVisible, searchValue, setSearchValue }) {
   const { currentTheme, toggleTheme } = useTheme();
   const { items } = useMenuItems({ setVisible });
 
@@ -22,6 +22,8 @@ export default function NavBar({ setVisible }) {
         placeholder="Search"
         type="text"
         className="w-8rem sm:w-auto"
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
       />
       <Button
         icon={`pi ${currentTheme === "light" ? "pi-sun" : "pi-moon"}`}
